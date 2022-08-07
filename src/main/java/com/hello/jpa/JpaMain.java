@@ -11,11 +11,8 @@ public class JpaMain {
         transaction.begin();
 
         try {
-            Member memberA = new Member(150L, "A");
-            Member memberB = new Member(151L, "B");
-
-            entityManager.persist(memberA);
-            entityManager.persist(memberB);
+            Member findMember = entityManager.find(Member.class, 150L);
+            findMember.setName("test");
 
             transaction.commit();
         } catch (Exception e) {
