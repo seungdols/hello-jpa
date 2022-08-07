@@ -13,20 +13,15 @@ public class JpaMain {
 
         try {
             // insert
-//            Member member = new Member();
-//            member.setId(2L);
-//            member.setName("seungdols2");
+            Member member = new Member();
+            member.setId(3L);
+            member.setName("seungdols3");
 
-            Member member = entityManager.find(Member.class, 1L);
-            member.setName("Seungdols");
+            Member findMember = entityManager.find(Member.class, 3L);
+            System.out.println("member.name: " + member.getName());
+            System.out.println("findMember.name: " + findMember.getName());
 
-            List<Member> result = entityManager.createQuery("select m from Member as m", Member.class).getResultList();
-
-            for (Member findMember : result) {
-                System.out.println("member.name: " + findMember.getName());
-            }
-
-//            entityManager.persist(member);
+            entityManager.persist(member);
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
