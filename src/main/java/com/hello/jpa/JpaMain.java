@@ -13,9 +13,9 @@ public class JpaMain {
 
         try {
             // insert
-            Member member = new Member();
-            member.setId(2L);
-            member.setName("seungdols2");
+//            Member member = new Member();
+//            member.setId(2L);
+//            member.setName("seungdols2");
 
             Member member = entityManager.find(Member.class, 1L);
             member.setName("Seungdols");
