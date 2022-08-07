@@ -11,8 +11,11 @@ public class JpaMain {
         transaction.begin();
 
         try {
-            Member findMember = entityManager.find(Member.class, 150L);
-            findMember.setName("test");
+            Member member = new Member(201L, "member201");
+            entityManager.persist(member);
+
+            entityManager.flush();
+            System.out.println("================");
 
             transaction.commit();
         } catch (Exception e) {
