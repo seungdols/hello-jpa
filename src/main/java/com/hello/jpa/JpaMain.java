@@ -12,12 +12,11 @@ public class JpaMain {
 
         try {
             Member memberA = new Member(150L, "A");
-            Member memberB = new Member(150L, "B");
+            Member memberB = new Member(151L, "B");
 
             entityManager.persist(memberA);
             entityManager.persist(memberB);
 
-            System.out.println("-----------");
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
