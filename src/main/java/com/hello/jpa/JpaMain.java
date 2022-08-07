@@ -31,7 +31,7 @@ public class JpaMain {
             transaction.rollback();
         } finally {
             entityManager.close();
-            entityManagerFactory.close();
         }
+        entityManagerFactory.close();
     }
 }
