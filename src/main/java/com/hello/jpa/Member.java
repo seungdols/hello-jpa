@@ -30,4 +30,12 @@ public class Member {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
+    }
 }

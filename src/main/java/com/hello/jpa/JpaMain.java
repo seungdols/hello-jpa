@@ -11,8 +11,12 @@ public class JpaMain {
         transaction.begin();
 
         try {
+            Team team = new Team();
+            team.setName("TeamA");
+            entityManager.persist(team);
             Member member = new Member();
-
+            member.setName("MemberA");
+            member.setTeamId(team.getId());
             entityManager.persist(member);
             transaction.commit();
         } catch (Exception e) {
