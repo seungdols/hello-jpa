@@ -1,18 +1,23 @@
 package com.hello.jpa;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
-public class Member {
+public class Team {
     @Id @GeneratedValue
-    @Column(name = "MEMBER_ID")
-    private Long id;
-    @Column(name = "USERNAME", nullable = false)
-    private String name;
     @Column(name = "TEAM_ID")
-    private Long teamId;
+    private Long id;
+    private String name;
 
-    public Member() {
+    public Team() {
+    }
+
+    public Team(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Long getId() {

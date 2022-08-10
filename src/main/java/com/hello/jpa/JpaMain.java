@@ -12,7 +12,6 @@ public class JpaMain {
 
         try {
             Member member = new Member();
-            member.setUsername("seungdols");
 
             entityManager.persist(member);
             transaction.commit();
