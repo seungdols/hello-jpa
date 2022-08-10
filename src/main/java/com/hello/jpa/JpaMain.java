@@ -14,10 +14,15 @@ public class JpaMain {
             Team team = new Team();
             team.setName("TeamA");
             entityManager.persist(team);
+
             Member member = new Member();
             member.setName("MemberA");
-            member.setTeamId(team.getId());
+            member.setTeam(team);
             entityManager.persist(member);
+
+            Member findMember = entityManager.find(Member.class, member.getId());
+            System.out.println("team name: " + findMember.getTeam().getName());
+
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
