@@ -38,8 +38,22 @@ public class Member {
         return team;
     }
 
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
     public void changeTeam(Team team) {
         this.team = team;
         team.getMembers().add(this);
     }
+
+// 무한루프 발생
+//    @Override
+//    public String toString() {
+//        return "Member{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", team=" + team +
+//                '}';
+//    }
 }
