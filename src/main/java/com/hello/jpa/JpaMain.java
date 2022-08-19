@@ -20,8 +20,7 @@ public class JpaMain {
             member.setName("MemberA");
 
             // 양방향 객체에 값을 셋팅
-            team.getMembers().add(member);
-            member.setTeam(team);
+            member.changeTeam(team);
             entityManager.persist(member);
 
             entityManager.flush();
