@@ -18,6 +18,9 @@ public class JpaMain {
 
             Member member = new Member();
             member.setName("MemberA");
+
+            // 양방향 객체에 값을 셋팅
+            team.getMembers().add(member);
             member.setTeam(team);
             entityManager.persist(member);
 
