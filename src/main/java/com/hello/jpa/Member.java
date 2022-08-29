@@ -4,16 +4,21 @@ import javax.persistence.*;
 
 @Entity
 public class Member {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "MEMBER_ID")
     private Long id;
     @Column(name = "USERNAME", nullable = false)
     private String name;
-//    @Column(name = "TEAM_ID")
+    //    @Column(name = "TEAM_ID")
 //    private Long teamId;
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
     private Team team;
+
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
 
     public Member() {
     }
