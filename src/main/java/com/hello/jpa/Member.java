@@ -23,7 +23,7 @@ public class Member {
     private Locker locker;
 
     @ManyToMany
-    @JoinTable(name = "MEMBER_PRODUCT")
+    @JoinTable(name = "MEMBER_PRODUCT", joinColumns = @JoinColumn(name = "MEMBER_ID"), inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
     private List<Product> products = new ArrayList<>();
 
     public Member() {
