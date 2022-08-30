@@ -5,6 +5,13 @@
     <persistence-unit name="hello">
         <class>com.hello.jpa.Member</class>
         <class>com.hello.jpa.Team</class>
+        <class>com.hello.jpa.Item</class>
+        <class>com.hello.jpa.Book</class>
+        <class>com.hello.jpa.Movie</class>
+        <class>com.hello.jpa.Album</class>
+        <class>com.hello.jpa.Locker</class>
+        <class>com.hello.jpa.Product</class>
+        <class>com.hello.jpa.RoleType</class>
         <properties>
             <!-- 필수 속성 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>

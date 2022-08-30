@@ -1,7 +1,9 @@
 package com.hello.jpa;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -12,29 +14,19 @@ public class JpaMain {
         transaction.begin();
 
         try {
-            Team team = new Team();
-            team.setName("TeamA");
-            entityManager.persist(team);
 
-            Member member = new Member();
-            member.setName("MemberA");
-
-            // 양방향 객체에 값을 셋팅
-            member.changeTeam(team);
-            entityManager.persist(member);
+            Movie movie = new Movie();
+            movie.setDirector("AA");
+            movie.setActor("DDD");
+            movie.setName("바람과 함께 사라지다");
+            movie.setPrice(10000);
+            entityManager.persist(movie);
 
             entityManager.flush();
             entityManager.clear();
 
-            Member findMember = entityManager.find(Member.class, member.getId());
-            System.out.println("team name: " + findMember.getTeam().getName());
-
-            List<Member> members = findMember.getTeam().getMembers();
-            for (Member m : members) {
-                System.out.println("member = "+ m.getName());
-            }
-
-
+            Movie findMovie = entityManager.find(Movie.class, movie.getId());
+            System.out.println("findMovie = " + findMovie.getName());
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
