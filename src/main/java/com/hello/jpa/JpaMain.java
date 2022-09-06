@@ -34,6 +34,12 @@ public class JpaMain {
 
             Movie findMovie = entityManager.find(Movie.class, movie.getId());
             System.out.println("findMovie = " + findMovie.getName());
+
+            Member findMember = entityManager.getReference(Member.class, member.getId());
+            System.out.println("findMember: " + findMember.getClass());
+            System.out.println("findMember.id: " + findMember.getId());
+            System.out.println("findMember.name: " + findMember.getName());
+
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
