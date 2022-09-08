@@ -15,10 +15,14 @@ public class JpaMain {
         transaction.begin();
 
         try {
+            Team team = new Team();
+            team.setName("Team1");
+
 
             Member member1 = new Member();
             member1.setCreatedBy("user1");
             member1.setCreatedAt(LocalDateTime.now());
+            member1.setTeam(team);
             Member member2 = new Member();
             member2.setCreatedBy("user2");
             member2.setCreatedAt(LocalDateTime.now());
@@ -39,23 +43,24 @@ public class JpaMain {
             Movie findMovie = entityManager.find(Movie.class, movie.getId());
             System.out.println("findMovie = " + findMovie.getName());
 
-            Member findMember = entityManager.getReference(Member.class, member1.getId());
-//            entityManager.close();
-            System.out.println("isLoaded: " + entityManagerFactory.getPersistenceUnitUtil().isLoaded(findMember));
-//            Hibernate.initialize(findMember);
-            System.out.println("findMember: " + findMember.getClass());
-
-            Member findMember1 = entityManager.find(Member.class, member1.getId());
-            Member findMember2 = entityManager.find(Member.class, member2.getId());
+            Member findMember = entityManager.find(Member.class, member1.getId());
+            System.out.println("findMember.team: " + findMember.getTeam().getClass());
+////            entityManager.close();
+//            System.out.println("isLoaded: " + entityManagerFactory.getPersistenceUnitUtil().isLoaded(findMember));
+////            Hibernate.initialize(findMember);
+//            System.out.println("findMember: " + findMember.getClass());
+//
+//            Member findMember1 = entityManager.find(Member.class, member1.getId());
+//            Member findMember2 = entityManager.find(Member.class, member2.getId());
             // == 비교 금지
-            System.out.println("findMember1 == findMember2: " + (findMember1 == findMember2));
-            System.out.println(findMember1 instanceof Member);
-            System.out.println(findMember2 instanceof Member);
-
-            System.out.println("findMember1 " + findMember1.getClass());
-            System.out.println("findMember.id: " + findMember.getId());
-            System.out.println("findMember.name: " + findMember.getName());
-            System.out.println("findMember1 == findMember: " + (findMember1 == findMember));
+//            System.out.println("findMember1 == findMember2: " + (findMember1 == findMember2));
+//            System.out.println(findMember1 instanceof Member);
+//            System.out.println(findMember2 instanceof Member);
+//
+//            System.out.println("findMember1 " + findMember1.getClass());
+//            System.out.println("findMember.id: " + findMember.getId());
+//            System.out.println("findMember.name: " + findMember.getName());
+//            System.out.println("findMember1 == findMember: " + (findMember1 == findMember));
 //            System.out.println("findMember: " + findMember.getClass());
 
             transaction.commit();
