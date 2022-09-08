@@ -45,6 +45,7 @@ public class JpaMain {
 
             Member findMember = entityManager.find(Member.class, member1.getId());
             System.out.println("findMember.team: " + findMember.getTeam().getClass());
+            findMember.getTeam().getName();
 ////            entityManager.close();
 //            System.out.println("isLoaded: " + entityManagerFactory.getPersistenceUnitUtil().isLoaded(findMember));
 ////            Hibernate.initialize(findMember);
