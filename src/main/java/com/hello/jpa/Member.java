@@ -26,6 +26,12 @@ public class Member extends BaseEntity {
     @JoinTable(name = "MEMBER_PRODUCT", joinColumns = @JoinColumn(name = "MEMBER_ID"), inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
     private List<Product> products = new ArrayList<>();
 
+    @Embedded
+    private Period period;
+
+    @Embedded
+    private Address homeAreaAddress;
+
     public Member() {
     }
 
@@ -58,7 +64,39 @@ public class Member extends BaseEntity {
         team.getMembers().add(this);
     }
 
-// 무한루프 발생
+    public Locker getLocker() {
+        return locker;
+    }
+
+    public void setLocker(Locker locker) {
+        this.locker = locker;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public Period getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Period period) {
+        this.period = period;
+    }
+
+    public Address getHomeAreaAddress() {
+        return homeAreaAddress;
+    }
+
+    public void setHomeAreaAddress(Address homeAreaAddress) {
+        this.homeAreaAddress = homeAreaAddress;
+    }
+
+    // 무한루프 발생
 //    @Override
 //    public String toString() {
 //        return "Member{" +

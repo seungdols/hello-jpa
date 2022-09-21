@@ -64,6 +64,12 @@ public class JpaMain {
 //            System.out.println("findMember1 == findMember: " + (findMember1 == findMember));
 //            System.out.println("findMember: " + findMember.getClass());
 
+            Member member = new Member();
+            member.setName("seungho");
+            member.setPeriod(new Period(LocalDateTime.parse("2016-09-20"), LocalDateTime.now()));
+
+            entityManager.persist(member);
+
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
