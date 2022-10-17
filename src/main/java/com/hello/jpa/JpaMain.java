@@ -26,10 +26,10 @@ public class JpaMain {
             member.getFavoriteFoods().add("족발");
 
             member.getAddressHistory().add(
-                    new Address("old1", "steet1", "133")
+                    new AddressEntity("old1", "steet1", "133")
             );
             member.getAddressHistory().add(
-                    new Address("old2", "steet2", "1311")
+                    new AddressEntity("old2", "steet2", "1311")
             );
 
             entityManager.persist(member);
@@ -41,10 +41,17 @@ public class JpaMain {
             Member findMember = entityManager.find(Member.class, member.getId());
             System.out.println("findMember: " + findMember.getName());
 
-            List<Address> addressHistory = findMember.getAddressHistory();
-            for (Address address : addressHistory) {
+            List<AddressEntity> addressHistory = findMember.getAddressHistory();
+            for (AddressEntity address : addressHistory) {
                 System.out.println(address);
             }
+
+            Address homeAreaAddress = findMember.getHomeAreaAddress();
+            Address newAdress = new Address("new", "new", "111");
+            findMember.setHomeAreaAddress(newAdress);
+
+            findMember.getFavoriteFoods().remove("치킨");
+            findMember.getFavoriteFoods().add("한식");
 
             transaction.commit();
         } catch (Exception e) {
