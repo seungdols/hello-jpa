@@ -14,6 +14,7 @@
         <class>com.hello.jpa.RoleType</class>
         <class>com.hello.jpa.Parent</class>
         <class>com.hello.jpa.Child</class>
+        <class>com.hello.jpa.Address</class>
         <properties>
             <!-- 필수 속성 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>

@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.time.LocalDateTime;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -15,60 +15,36 @@ public class JpaMain {
         transaction.begin();
 
         try {
-            Team team = new Team();
-            team.setName("Team1");
 
+            Member member = new Member();
+            member.setName("seungho");
 
-            Member member1 = new Member();
-            member1.setCreatedBy("user1");
-            member1.setCreatedAt(LocalDateTime.now());
-            member1.setTeam(team);
-            Member member2 = new Member();
-            member2.setCreatedBy("user2");
-            member2.setCreatedAt(LocalDateTime.now());
+            member.setHomeAreaAddress(
+                    new Address("city1", "steet", "13333")
+            );
+            member.getFavoriteFoods().add("치킨");
+            member.getFavoriteFoods().add("족발");
 
-            entityManager.persist(member1);
-            entityManager.persist(member2);
+            member.getAddressHistory().add(
+                    new Address("old1", "steet1", "133")
+            );
+            member.getAddressHistory().add(
+                    new Address("old2", "steet2", "1311")
+            );
 
-            Movie movie = new Movie();
-            movie.setDirector("AA");
-            movie.setActor("DDD");
-            movie.setName("바람과 함께 사라지다");
-            movie.setPrice(10000);
-            entityManager.persist(movie);
+            entityManager.persist(member);
+
 
             entityManager.flush();
             entityManager.clear();
 
-            Movie findMovie = entityManager.find(Movie.class, movie.getId());
-            System.out.println("findMovie = " + findMovie.getName());
+            Member findMember = entityManager.find(Member.class, member.getId());
+            System.out.println("findMember: " + findMember.getName());
 
-            Member findMember = entityManager.find(Member.class, member1.getId());
-            System.out.println("findMember.team: " + findMember.getTeam().getClass());
-            findMember.getTeam().getName();
-////            entityManager.close();
-//            System.out.println("isLoaded: " + entityManagerFactory.getPersistenceUnitUtil().isLoaded(findMember));
-////            Hibernate.initialize(findMember);
-//            System.out.println("findMember: " + findMember.getClass());
-//
-//            Member findMember1 = entityManager.find(Member.class, member1.getId());
-//            Member findMember2 = entityManager.find(Member.class, member2.getId());
-            // == 비교 금지
-//            System.out.println("findMember1 == findMember2: " + (findMember1 == findMember2));
-//            System.out.println(findMember1 instanceof Member);
-//            System.out.println(findMember2 instanceof Member);
-//
-//            System.out.println("findMember1 " + findMember1.getClass());
-//            System.out.println("findMember.id: " + findMember.getId());
-//            System.out.println("findMember.name: " + findMember.getName());
-//            System.out.println("findMember1 == findMember: " + (findMember1 == findMember));
-//            System.out.println("findMember: " + findMember.getClass());
-
-            Member member = new Member();
-            member.setName("seungho");
-            member.setPeriod(new Period(LocalDateTime.parse("2016-09-20"), LocalDateTime.now()));
-
-            entityManager.persist(member);
+            List<Address> addressHistory = findMember.getAddressHistory();
+            for (Address address : addressHistory) {
+                System.out.println(address);
+            }
 
             transaction.commit();
         } catch (Exception e) {
